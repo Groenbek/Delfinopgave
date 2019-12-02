@@ -1,5 +1,6 @@
 package mappers;
 
-public class MemberToTeam {
 
+
+public class MemberToTeam {
 }
