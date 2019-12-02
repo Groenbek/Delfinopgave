@@ -1,6 +1,6 @@
 package model;
 
 //enums
-public enum Disciplins {
+public enum Discipline {
     CRAWl
 }
