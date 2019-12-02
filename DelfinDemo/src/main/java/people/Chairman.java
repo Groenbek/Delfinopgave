@@ -4,7 +4,7 @@ import mappers.MemberMap;
 import presentation.ConsoleUI;
 import presentation.ConsoleUI;
 
-public class Formand {
+public class Chairman {
 
     private MemberMap mc = new MemberMap();
     private ConsoleUI ui = new ConsoleUI();
