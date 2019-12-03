@@ -24,7 +24,7 @@ public class MemberMap {
 
         try {
             con = DBConnector.getConnection();
-            String SQL = "SELECT * FROM Members";
+            String SQL = "SELECT * FROM members";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
 
@@ -71,7 +71,7 @@ public class MemberMap {
 
     public void insertMember(Member member) {
         try {
-            String SQL = "INSERT INTO Members (m_name, age, act_or_pas, competitive) VALUES (?, ?, ?, ?)";
+            String SQL = "INSERT INTO members (m_name, age, act_or_pas, competitive) VALUES (?, ?, ?, ?)";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, member.getmName());
@@ -83,4 +83,24 @@ public class MemberMap {
             Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public int getMemberId(){
+        int returnId = 0;
+        try {
+            Connection con = DBConnector.getConnection();
+            String sql = "select max(m_id) from members";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                returnId += rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MemberMap.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return returnId;
+        
+    }
+    
+    
 }
