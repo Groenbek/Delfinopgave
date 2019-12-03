@@ -40,6 +40,9 @@ public class MemberTraining {
         }
         return results;
     }
+    public void RegisterTime(int mId, int time) {
+        String SQL = "SELECT ";
+    }
     private Discipline convertIntToDiscipline(int input) {
         if (input<1||input>4) {
             throw new IllegalArgumentException();
