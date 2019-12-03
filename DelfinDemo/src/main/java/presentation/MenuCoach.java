@@ -1,12 +1,17 @@
 package presentation;
 
+import java.util.ArrayList;
 import mappers.MemberMap;
+import mappers.MemberTraining;
+import model.Result;
 import people.Member;
 
 public class MenuCoach implements Menu {
 
     private ConsoleUI ui;
+    private MemberTraining memberTrain = new MemberTraining();
     private MemberMap memberMap = new MemberMap();
+    private ArrayList<Result> resArray;
 
     public MenuCoach(ConsoleUI ui) {
         this.ui = ui;
@@ -17,7 +22,7 @@ public class MenuCoach implements Menu {
         int choice = 0;
         while (choice != 2) {
             ui.println("---------------------- Delfin Klubben ----------------------");
-            ui.println("1) Registrer ny bruger");
+            ui.println("1) Vis holdliste");
             ui.println("2) Tilbage til hovedmenu");
             try {
                 choice = Integer.parseInt(ui.getInput());
@@ -26,28 +31,35 @@ public class MenuCoach implements Menu {
                 }
                 switch (choice) {
                     case 1:
-                        Member member = createMember();
-                        memberMap.insertMember(member);
-                        ui.println("Bruger oprettet.");
+                        printTeam();
+                        break;
+                    case 2:
+                        //top 5
+                        
                         break;
                 }
 
             } catch (NumberFormatException e) {
-                ui.println("Vælg mellem menupunkt 1 - 4");
+                ui.println("Vælg mellem menupunkt 1 - 2");
             }
         }
     }
-    private Member createMember() {
-        ui.println("Tast navn: ");
-        String name = ui.getInput();
-        ui.println("Tast alder: ");
-        int age = Integer.parseInt(ui.getInput());
-        ui.println("Er svømmeren aktiv eller passiv?");
-        String actOrPas = ui.getInput();
-        ui.println("Deltager svømmeren i stævner?");
-        String competitive = ui.getInput();
-        Member member = new Member(name, age, actOrPas, competitive);
-        return member;
+    private void printTeam() {
+        ui.println("Hvilket hold vil du se?\n1) Hold 1\n2) Hold 2");
+        int teamViewer = Integer.parseInt(ui.getInput());
+//        resArray = memberTrain.getResults(teamViewer);
+        ArrayList<Member> members = memberMap.getMembersInTeam(teamViewer);
+        
+        for (Member member: members) {
+            ui.println(member.toString());
+        }
     }
+//    private void top5() {
+//        ui.println("Hvilket hold vil du se?\n1) Hold 1\n2) Hold 2");
+//        int teamViewer = Integer.parseInt(ui.getInput());
+//        ui.println("Hvilken disciplin vil du se?\n1) Crawl\n2) Rygcrawl\n3) Brystsvømning\n4) Butterfly");
+//        int discViewer = Integer.parseInt(ui.getInput());
+//        resArray = memberTrain.getResults(discViewer, teamViewer);
+//    }
 
 }

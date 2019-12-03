@@ -34,4 +34,10 @@ public class Member {
         return competitive;
     }
 
+    @Override
+    public String toString() {
+        return "Member{" + "mName=" + mName + ", age=" + age + ", actOrPas=" + actOrPas + ", competitive=" + competitive + '}';
+    }
+    
+
 }

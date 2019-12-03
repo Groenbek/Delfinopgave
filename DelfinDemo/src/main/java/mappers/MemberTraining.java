@@ -8,18 +8,23 @@ import java.util.logging.Logger;
 import model.Discipline;
 import static model.Discipline.*;
 import model.Result;
+import people.Member;
 
 public class MemberTraining {
     Connection con = null;
 
-    public ArrayList<Result> getResults() {
+    public ArrayList<Result> getResults(int tId) {
 
         ArrayList<Result> results = new ArrayList();
 
         try {
+            String SQL = "SELECT * FROM Memberstotraining WHERE t_id = ?";
             con = DBConnector.getConnection();
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Memberstotraining");
+            //Statement stmt = con.createStatement();
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, tId);
+            //ps.executeUpdate();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 int id = rs.getInt("m_id");
@@ -50,12 +55,5 @@ public class MemberTraining {
                 return BUTTERFLY;
         }
         return null;
-    }
-    public static void main(String[] args) {
-        ArrayList<Result> resArray = new MemberTraining().getResults();
-        
-        for (Result r: resArray) {
-            System.out.println(r);
-        }
     }
 }

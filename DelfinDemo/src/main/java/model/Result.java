@@ -32,6 +32,10 @@ public class Result {
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
 
     @Override
     public String toString() {

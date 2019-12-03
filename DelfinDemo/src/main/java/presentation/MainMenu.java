@@ -36,7 +36,8 @@ public class MainMenu implements Menu {
                         System.out.println("not Implemented");
                         break;
                     case 3:
-                        System.out.println("not Implemented");
+                        activeMenu = new MenuCoach(ui);
+                        activeMenu.startMenu();
                         break;
 
                 }
