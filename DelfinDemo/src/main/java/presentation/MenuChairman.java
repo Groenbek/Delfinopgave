@@ -37,6 +37,7 @@ public class MenuChairman implements Menu {
             }
         }
     }
+
     private Member createMember() {
         ui.println("Tast navn: ");
         String name = ui.getInput();
@@ -50,4 +51,21 @@ public class MenuChairman implements Menu {
         return member;
     }
 
+    private int calculateTeamID(Member member) {
+        if (member.getAge() < 18) {
+            return 1;
+        }
+        return 2;
+    }
+
+    private int calculatePriceID(Member member) {
+        if (member.getActOrPas().equals("passiv")) {
+            return 1;
+        } else if (member.getActOrPas().equals("aktiv") && member.getAge() <= 18) {
+            return 2;
+        } else if (member.getActOrPas().equals("aktiv") && member.getAge() <= 60) {
+            return 3;
+        }
+        return 4;
+    }
 }

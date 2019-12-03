@@ -23,7 +23,8 @@ public class MenuCoach implements Menu {
         while (choice != 2) {
             ui.println("---------------------- Delfin Klubben ----------------------");
             ui.println("1) Vis holdliste");
-            ui.println("2) Tilbage til hovedmenu");
+            ui.println("2) Registrer træningsresultat yoink");
+            ui.println("3) Tilbage til hovedmenu");
             try {
                 choice = Integer.parseInt(ui.getInput());
                 if (choice < 1 || choice > 2) {

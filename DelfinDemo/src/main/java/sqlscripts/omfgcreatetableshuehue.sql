@@ -67,29 +67,22 @@ primary key (t_id, m_id, d_id),
 		REFERENCES discipline(d_id)
 );
 create table dolphinclub.pricelist (
-p_id				integer not null auto_increment,
+m_type				integer not null auto_increment,
 price				integer,
-primary key (p_id)
-);
-
-create table dolphinclub.membertype (
-m_type				varchar(20),
-p_id				integer not null,
-yo_or_old			varchar(20),
-primary key (m_type),
-	foreign key (p_id)
-		references pricelist(p_id)
+primary key (m_type)
 );
 create table dolphinclub.memberstoteam (
 team_id				integer not null,
 m_id				integer not null,
-m_type				varchar(20),
+m_type				integer not null,
 haspaid				varchar(25),
 primary key (team_id, m_id, m_type),
 	FOREIGN KEY (team_id)
 		REFERENCES team(team_id),
 	FOREIGN KEY (m_id)
 		REFERENCES members(m_id),
-	FOREIGN KEY (m_type)
-		REFERENCES membertype(m_type)
+        foreign key (m_type)
+        references pricelist(m_type)
 );
+
+

@@ -15,7 +15,7 @@ public class MemberToTeam {
 
     public void insertMember(Member member) {
         try {
-            String SQL = "INSERT INTO Members (m_name, age, act_or_pas, competitive) VALUES (?, ?, ?, ?)";
+            String SQL = "INSERT INTO Members (team_id, m_id, m_type, haspaid) VALUES (?, ?, ?, ?)";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, member.getmName());
