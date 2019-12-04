@@ -20,15 +20,16 @@ public class MenuCoach implements Menu {
     @Override
     public void startMenu() {
         int choice = 0;
-        while (choice != 4) {
+        while (choice != 5) {
             ui.println("---------------------- Delfin Klubben ----------------------");
             ui.println("1) Vis holdliste");
             ui.println("2) Registrer træningsresultat");
             ui.println("3) Registrer konkurrenceresultat");
-            ui.println("4) Tilbage til hovedmenu");
+            ui.println("4) Se top 5");
+            ui.println("5) Tilbage til hovedmenu");
             try {
                 choice = Integer.parseInt(ui.getInput());
-                if (choice < 1 || choice > 4) {
+                if (choice < 1 || choice > 5) {
                     throw new NumberFormatException();
                 }
                 switch (choice) {
@@ -43,19 +44,15 @@ public class MenuCoach implements Menu {
                         coach.updateEventResult(ui);
                         ui.println("Resultat registreret");
                         break;
+                    case 4:
+                        coach.topFive(ui);
+                        ui.println("Medlem indastet i stævne");              
                 }
 
             } catch (NumberFormatException e) {
-                ui.println("Vælg mellem menupunkt 1 - 4");
+                ui.println("Vælg mellem menupunkt 1 - 5");
             }
         }
     }
 
-//    private void top5() {
-//        ui.println("Hvilket hold vil du se?\n1) Hold 1\n2) Hold 2");
-//        int teamViewer = Integer.parseInt(ui.getInput());
-//        ui.println("Hvilken disciplin vil du se?\n1) Crawl\n2) Rygcrawl\n3) Brystsvømning\n4) Butterfly");
-//        int discViewer = Integer.parseInt(ui.getInput());
-//        resArray = memberTrain.getResults(discViewer, teamViewer);
-//    }
 }

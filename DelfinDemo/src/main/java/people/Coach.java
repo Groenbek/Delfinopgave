@@ -1,12 +1,15 @@
 package people;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import mappers.MemberMap;
 import mappers.MemberTraining;
 import mappers.MembersToComp;
+import model.CompScore;
 import model.Result;
 import model.SwimEvent;
 import presentation.ConsoleUI;
+import presentation.RestultComparator;
 
 public class Coach {
 
@@ -25,36 +28,36 @@ public class Coach {
     }
 
     public void printEvents(ConsoleUI ui) {
-        System.out.println("tis1");
         ArrayList<SwimEvent> se = membersToComp.getSwimEvents();
 
-        System.out.println("tis2");
         if (se != null || se.size() <= 0) {
             ui.println("Oversigt over events:");
             for (SwimEvent swimevent : se) {
                 ui.println(swimevent.toString());
             }
         }
-        System.out.println("tis3");
     }
 
     public void updateTrainingResult(ConsoleUI ui) {
+        ui.println("Angiv disciplin: \n1) Crawl\n2) Rygsvømning\n3) Brystsvømning\n4) Butterfly");
+        int dis = Integer.parseInt(ui.getInput());
         ui.println("Angiv medlemsnummer: ");
         int mId = Integer.parseInt(ui.getInput());
         ui.println("Indtast dato: ");
         int date = Integer.parseInt(ui.getInput());
         ui.println("Indtast tid: ");
         int tid = Integer.parseInt(ui.getInput());
-        memberTrain.registerTrainingResult(date, tid, mId);
+        memberTrain.registerTrainingResult(dis, date, tid, mId);
 
     }
 
-    public void updateEventResult(ConsoleUI ui) {
-          if (membersToComp.getSwimEvents().isEmpty()) {
-              ui.println("Der er ikke oprettet nogle stævner");
-             createSwimEvent(ui);
-          }
-          printEvents(ui);
+    private void insertMemberToEvent(ConsoleUI ui, int disc) {
+        if (membersToComp.getSwimEvents().isEmpty()) {
+            ui.println("Der er ikke oprettet nogle stævner");
+            createSwimEvent(ui);
+        }
+        ui.println("\nUdtag medlem til stævne: ");
+        printEvents(ui);
         ui.println("Vælg stævne ID:");
         int seId = Integer.parseInt(ui.getInput());
         if (seId > membersToComp.getSwimEvents().size() || seId < 0) {
@@ -67,24 +70,53 @@ public class Coach {
                 seId = membersToComp.getSwimEvents().size();
             }
         }
-        
+
         ui.println("Angiv medlemsnummer: ");
         int mId = Integer.parseInt(ui.getInput());
-
-        ui.println("Indtast placering: ");
-        int sePlacement = Integer.parseInt(ui.getInput());
-
-        ui.println("Angiv disciplinid: ");
-        int dId = Integer.parseInt(ui.getInput());
-          membersToComp.registerEventResult(seId, mId, dId, sePlacement);
+        int sePlacement = 0;
+        membersToComp.registerEventResult(seId, mId, disc, sePlacement);
     }
+    
+    public void updateEventResult(ConsoleUI ui){
+        ArrayList<CompScore> scores = membersToComp.getAllMemberAndScores();
+        for (CompScore elm : scores){
+            ui.println(elm.toString());
+        }
+        ui.println("Indtast medlemsnummer: ");
+        int mId = Integer.parseInt(ui.getInput());
+        ui.println("Vælg disciplin:\n1) Crawl\n2) Rygsvømning\n3) Brystsvømning\n4) Butterfly");
+        int choice = Integer.parseInt(ui.getInput());
+        ui.println("Indtast placering: ");
+        int placement = Integer.parseInt(ui.getInput());
+        membersToComp.updateEventResult(placement, mId, choice);
+    }
+    
+    
 
-    public void createSwimEvent(ConsoleUI ui) {
+    private void createSwimEvent(ConsoleUI ui) {
         ui.println("Indtast dato for stævne:");
         String date = ui.getInput();
         ui.println("Indtast navn for stævne:");
         String name = ui.getInput();
         membersToComp.registerSwimEvent(date, name);
+    }
+
+    public void topFive(ConsoleUI ui) {
+        ui.println("Vælg disciplin til top 5:\n1) Crawl\n2) Rygsvømning\n3) Brystsvømning\n4) Butterfly");
+        int choice = Integer.parseInt(ui.getInput());
+        ArrayList<Result> allResults = memberTrain.getResults(choice);
+        Collections.sort(allResults, new RestultComparator());
+        ui.println("TOP 5: ");
+        if (allResults.size() >= 5) {
+            for (int i = 0; i < 5; i++) {
+                ui.println(allResults.get(i).toString());
+            }
+        } else {
+            for (Result elm : allResults) {
+                ui.println(elm.toString());
+            }
+        }
+        insertMemberToEvent(ui, choice);
     }
 
 }

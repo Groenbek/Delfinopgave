@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.CompScore;
 import model.SwimEvent;
 
 public class MembersToComp {
@@ -29,6 +30,23 @@ public class MembersToComp {
             Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void updateEventResult(int newResult, int mId, int disc){
+         try {
+            String SQL = "UPDATE memberstoevent SET se_placement =? WHERE m_id = ? AND d_id = ?";
+            con = DBConnector.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, newResult);
+            ps.setInt(2, mId);
+            ps.setInt(3, disc);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
+    
 
     public void registerSwimEvent(String seDate, String seName) {
         try {
@@ -44,7 +62,6 @@ public class MembersToComp {
     }
 
     public ArrayList<SwimEvent> getSwimEvents() {
-        System.out.println("henrik1");
         ArrayList<SwimEvent> swimEvents = new ArrayList();
         try {
             String SQL = "SELECT * FROM swimevent";
@@ -54,15 +71,13 @@ public class MembersToComp {
             while (rs.next()) {
                 int seId = rs.getInt("se_id");
                 String seDate = rs.getString("se_date");
-                String seName = rs.getString("se_date");
+                String seName = rs.getString("se_name");
                 SwimEvent se = new SwimEvent(seId, seDate, seName);
                 swimEvents.add(se);
             }
-            System.out.println("henrik2");
         } catch (SQLException ex) {
             Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("henrik3");
         return swimEvents;
     }
 
@@ -81,8 +96,29 @@ public class MembersToComp {
         }
     }
 
-    public static void main(String[] args) {
-        new MembersToComp().registerSwimmerToSwimEvent(1, 1, 1, 1);
+    public ArrayList<CompScore> getAllMemberAndScores(){
+      
+        ArrayList<CompScore> leaderBoard = new ArrayList();
+        try {
+            String SQL = "SELECT * FROM memberstoevent";
+            con = DBConnector.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int seId = rs.getInt("se_id");
+                int mId = rs.getInt("m_id");
+                int dId = rs.getInt("d_id");
+                int placement = rs.getInt("se_placement");
+           
+                CompScore lb = new CompScore(seId, mId, dId, placement);
+                leaderBoard.add(lb);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return leaderBoard;
     }
-
+        
+    
+  
 }

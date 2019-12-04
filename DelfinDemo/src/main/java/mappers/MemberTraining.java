@@ -13,15 +13,18 @@ public class MemberTraining {
 
     Connection con = null;
 
-    public ArrayList<Result> getResults(int tId) {
+    public ArrayList<Result> getResults(int dId) {
 
         ArrayList<Result> results = new ArrayList();
 
         try {
-            String SQL = "SELECT * FROM Memberstotraining WHERE t_id = ?";
+            if (dId < 1 || dId > 4) {
+                throw new IllegalArgumentException();
+            }
+            String SQL = "SELECT * FROM memberstotraining WHERE d_id = ?";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, tId);
+            ps.setInt(1, dId);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -30,19 +33,15 @@ public class MemberTraining {
                 int time = rs.getInt("tid");
                 Result res = new Result(id, discipline, time);
                 results.add(res);
-
             }
 
-        } catch (SQLException ex) {
+        } catch (SQLException | IllegalArgumentException ex ) {
             Logger.getLogger(MemberToTeam.class.getName()).log(Level.SEVERE, null, ex);
         }
         return results;
     }
 
-    //TODO: this
-    /*public void RegisterTime(int mId, int time) {
-    String SQL = "SELECT ";
-    }*/
+ 
     public void insertMember(int tId, int mId, int dId, int tid) {
         try {
             String SQL = "INSERT INTO memberstotraining (t_id, m_id, d_id, tid) VALUES (?, ?, ?, ?)";
@@ -74,18 +73,20 @@ public class MemberTraining {
         }
         return null;
     }
-    public void registerTrainingResult(int trainingdate, int tid, int mId) {
-         try {
-            String SQL = "UPDATE memberstotraining SET trainingdate = ?, tid = ? WHERE m_id = ?;";
+
+    public void registerTrainingResult(int disciplin, int trainingdate, int tid, int mId) {
+        try {
+            String SQL = "UPDATE memberstotraining SET trainingdate = ?, tid = ? WHERE m_id = ? AND d_id = ?;";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, trainingdate);
             ps.setInt(2, tid);
             ps.setInt(3, mId);
+            ps.setInt(4, disciplin);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }
-//seth mc fartland... amirite, gottem

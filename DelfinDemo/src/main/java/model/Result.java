@@ -36,6 +36,10 @@ public class Result {
         return id;
     }
 
+    
+    public int getTime() {
+        return time;
+    }
 
     @Override
     public String toString() {
