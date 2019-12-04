@@ -29,7 +29,8 @@ primary key (team_id)
 
 create table dolphinclub.swimevent (
 se_id				integer not null auto_increment,
-se_date				date,
+se_date				varchar(10),
+se_name                         varchar(50),
 PRIMARY KEY (se_id)
 );
 

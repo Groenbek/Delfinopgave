@@ -20,14 +20,15 @@ public class MenuCoach implements Menu {
     @Override
     public void startMenu() {
         int choice = 0;
-        while (choice != 2) {
+        while (choice != 4) {
             ui.println("---------------------- Delfin Klubben ----------------------");
             ui.println("1) Vis holdliste");
             ui.println("2) Registrer træningsresultat");
-            ui.println("3) Tilbage til hovedmenu");
+            ui.println("3) Registrer konkurrenceresultat");
+            ui.println("4) Tilbage til hovedmenu");
             try {
                 choice = Integer.parseInt(ui.getInput());
-                if (choice < 1 || choice > 2) {
+                if (choice < 1 || choice > 4) {
                     throw new NumberFormatException();
                 }
                 switch (choice) {
@@ -38,10 +39,14 @@ public class MenuCoach implements Menu {
                         coach.updateTrainingResult(ui);
                         ui.println("Resultat registreret");
                         break;
+                    case 3:
+                        coach.updateEventResult(ui);
+                        ui.println("Resultat registreret");
+                        break;
                 }
 
             } catch (NumberFormatException e) {
-                ui.println("Vælg mellem menupunkt 1 - 2");
+                ui.println("Vælg mellem menupunkt 1 - 4");
             }
         }
     }
