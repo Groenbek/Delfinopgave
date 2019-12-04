@@ -57,6 +57,7 @@ create table dolphinclub.memberstotraining (
 t_id				integer not null,
 m_id				integer not null,
 d_id				integer not null,
+trainingdate			varchar(20),
 tid				integer not null,
 primary key (t_id, m_id, d_id),
     FOREIGN KEY (t_id)

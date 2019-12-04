@@ -74,4 +74,18 @@ public class MemberTraining {
         }
         return null;
     }
+    public void registerTrainingResult(int trainingdate, int tid, int mId) {
+         try {
+            String SQL = "UPDATE memberstotraining SET trainingdate = ?, tid = ? WHERE m_id = ?;";
+            con = DBConnector.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, trainingdate);
+            ps.setInt(2, tid);
+            ps.setInt(3, mId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
+//seth mc fartland... amirite, gottem

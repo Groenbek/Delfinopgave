@@ -29,12 +29,12 @@ public class MemberMap {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                rs.next();
+                int mId = rs.getInt("m_id");
                 String name = rs.getString("m_name");
                 int age = rs.getInt("age");
                 String actOrPas = rs.getString("act_or_pas");
                 String competitive = rs.getString("competitive");
-                Member member = new Member(name, age, actOrPas, competitive);
+                Member member = new Member(mId, name, age, actOrPas, competitive);
                 members.add(member);
 
             }
@@ -56,11 +56,12 @@ public class MemberMap {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                int mId = rs.getInt("m_id");
                 String name = rs.getString("m_name");
                 int age = rs.getInt("age");
                 String actOrPas = rs.getString("act_or_pas");
                 String competitive = rs.getString("competitive");
-                Member member = new Member(name, age, actOrPas, competitive);
+                Member member = new Member(mId, name, age, actOrPas, competitive);
                 members.add(member);
             }
         } catch (SQLException ex) {

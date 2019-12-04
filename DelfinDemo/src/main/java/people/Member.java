@@ -2,20 +2,21 @@ package people;
 
 public class Member {
 
+    private int mId;
     private String mName;
     private int age;
     private String actOrPas;
     private String competitive;
 
-    public Member(String mName, int age, String actOrPas, String competitive) {
+    public Member(int mId, String mName, int age, String actOrPas, String competitive) {
         this.mName = mName;
         this.age = age;
         this.actOrPas = actOrPas;
         this.competitive = competitive;
     }
 
-    public String getmId() {
-        return null;
+    public int getmId() {
+        return mId;
         //Hent mId fra DB evt?
     }
     public String getmName() {
@@ -36,8 +37,8 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member{" + "mName=" + mName + ", age=" + age + ", actOrPas=" + actOrPas + ", competitive=" + competitive + '}';
+        return "Member{" + "mId=" + mId + ", mName=" + mName + ", age=" + age + ", actOrPas=" + actOrPas + ", competitive=" + competitive + '}';
     }
-    
+
 
 }

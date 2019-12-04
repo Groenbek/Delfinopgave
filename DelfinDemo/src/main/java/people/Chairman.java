@@ -29,7 +29,7 @@ public class Chairman {
         String actOrPas = ui.getInput();
         ui.println("Deltager svømmeren i stævner?");
         String competitive = ui.getInput();
-        Member member = new Member(name, age, actOrPas, competitive);
+        Member member = new Member(0, name, age, actOrPas, competitive);
         return member;
     }
 
