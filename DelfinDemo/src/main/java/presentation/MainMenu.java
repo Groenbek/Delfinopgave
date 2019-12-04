@@ -33,7 +33,8 @@ public class MainMenu implements Menu {
                         activeMenu.startMenu();
                         break;
                     case 2:
-                        System.out.println("not Implemented");
+                        activeMenu = new MenuCashier(ui);
+                        activeMenu.startMenu();
                         break;
                     case 3:
                         activeMenu = new MenuCoach(ui);

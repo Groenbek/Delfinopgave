@@ -9,6 +9,7 @@ public class Member {
     private String competitive;
 
     public Member(int mId, String mName, int age, String actOrPas, String competitive) {
+        this.mId = mId;
         this.mName = mName;
         this.age = age;
         this.actOrPas = actOrPas;
@@ -37,7 +38,7 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member{" + "mId=" + mId + ", mName=" + mName + ", age=" + age + ", actOrPas=" + actOrPas + ", competitive=" + competitive + '}';
+        return "Medlems ID: " + mId + "\tNavn: " + mName + "\talder: " + age+ " år" + "\tStatus: " + actOrPas + "\tKonkurerende: " + competitive + '}';
     }
 
 

@@ -35,7 +35,7 @@ public class MenuChairman implements Menu {
                 }
 
             } catch (NumberFormatException e) {
-                ui.println("Vælg mellem menupunkt 1 - 4");
+                ui.println("Vælg mellem menupunkt 1 - 2");
             }
         }
     }
