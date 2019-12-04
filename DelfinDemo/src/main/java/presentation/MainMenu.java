@@ -1,10 +1,8 @@
 package presentation;
 
 public class MainMenu implements Menu {
-
-    //Menu activeMenu = new MainMenu();
+    
     ConsoleUI ui = new ConsoleUI();
-    MenuController mc = new MenuController();
     Menu activeMenu;
 
     public MainMenu() {
@@ -15,7 +13,7 @@ public class MainMenu implements Menu {
     public void startMenu() {
         int choice = 0;
         while (choice != 4) {
-            ui.println("---------------------- Delfin Klubben ----------------------");
+            ui.println("---------------------------- Delfin Klubben ----------------------------");
             ui.println("1) Formand");
             ui.println("2) Kasserer");
             ui.println("3) Træner");

@@ -12,7 +12,7 @@ public class CompScore {
 
     @Override
     public String toString() {
-        return "LeaderBoard{" + "seId=" + seId + ", mId=" + mId + ", dId=" + dId + ", placement=" + placement + '}';
+        return "Stævne ID: " + seId + ", Medlemnummer: " + mId + ", Disciplin ID: " + dId + ", Placering: " + placement;
     }
     
     

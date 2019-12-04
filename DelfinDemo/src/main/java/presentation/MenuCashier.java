@@ -16,7 +16,7 @@ public class MenuCashier implements Menu {
     public void startMenu() {
         int choice = 0;
         while (choice != 3) {
-            ui.println("---------------------- Delfin Klubben ----------------------");
+            ui.println("---------------------------- Delfin Klubben ----------------------------");
             ui.println("1) Se restance");
             ui.println("2) Sæt medlem i restance");
             ui.println("3) Tilbage til hovedmenu");

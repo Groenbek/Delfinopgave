@@ -40,7 +40,7 @@ public class MemberToTeam {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("m_id");
-                String hasPaid = "\tNavn: " + rs.getString("m_name")+"\tStatus: "+rs.getString("haspaid");
+                String hasPaid = "\tNavn: " + rs.getString("m_name")+"\t\tStatus: "+rs.getString("haspaid");
                 hashmap.put(id, hasPaid);
             }
         } catch (SQLException ex) {

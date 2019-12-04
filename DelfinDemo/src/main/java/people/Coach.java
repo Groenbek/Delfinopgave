@@ -56,11 +56,11 @@ public class Coach {
             ui.println("Der er ikke oprettet nogle stævner");
             createSwimEvent(ui);
         }
-        ui.println("\nUdtag medlem til stævne: ");
+        ui.println("\n--- Udtag medlem til stævne ---");
         printEvents(ui);
-        ui.println("Vælg stævne ID:");
+        ui.println("Vælg stævne ID, eller tryk '0' for at oprette stævne:");
         int seId = Integer.parseInt(ui.getInput());
-        if (seId > membersToComp.getSwimEvents().size() || seId < 0) {
+        if (seId > membersToComp.getSwimEvents().size() || seId <= 0) {
             while (seId != 0) {
                 ui.println("ID'et findes ikke. Tryk 0 for at oprette nyt stævne.");
                 seId = Integer.parseInt(ui.getInput());
@@ -71,15 +71,15 @@ public class Coach {
             }
         }
 
-        ui.println("Angiv medlemsnummer: ");
+        ui.println("Angiv medlemsnummer, for at indsætte medlem i det nye stævne: ");
         int mId = Integer.parseInt(ui.getInput());
         int sePlacement = 0;
         membersToComp.registerEventResult(seId, mId, disc, sePlacement);
     }
-    
-    public void updateEventResult(ConsoleUI ui){
+
+    public void updateEventResult(ConsoleUI ui) {
         ArrayList<CompScore> scores = membersToComp.getAllMemberAndScores();
-        for (CompScore elm : scores){
+        for (CompScore elm : scores) {
             ui.println(elm.toString());
         }
         ui.println("Indtast medlemsnummer: ");
@@ -90,13 +90,11 @@ public class Coach {
         int placement = Integer.parseInt(ui.getInput());
         membersToComp.updateEventResult(placement, mId, choice);
     }
-    
-    
 
     private void createSwimEvent(ConsoleUI ui) {
-        ui.println("Indtast dato for stævne:");
+        ui.println("Indtast dato for nyt stævne:");
         String date = ui.getInput();
-        ui.println("Indtast navn for stævne:");
+        ui.println("Indtast navn for nyt stævne:");
         String name = ui.getInput();
         membersToComp.registerSwimEvent(date, name);
     }
@@ -109,14 +107,25 @@ public class Coach {
         ui.println("TOP 5: ");
         if (allResults.size() >= 5) {
             for (int i = 0; i < 5; i++) {
-                ui.println(allResults.get(i).toString());
+                if (allResults.get(i).getTime() > 0) {
+                    ui.println(allResults.get(i).toString());
+                }
+
             }
         } else {
             for (Result elm : allResults) {
-                ui.println(elm.toString());
+                if (elm.getTime() > 0) {
+                    ui.println(elm.toString());
+                }
+
             }
         }
-        insertMemberToEvent(ui, choice);
+        ui.println("1) Registrer medlem til stævne\n2) Tilbage til menu");
+        int oneOrTwo = Integer.parseInt(ui.getInput());
+        if (oneOrTwo == 1) {
+            insertMemberToEvent(ui, choice);
+        }
+
     }
 
 }

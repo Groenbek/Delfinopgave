@@ -27,7 +27,7 @@ public class SwimEvent {
 
     @Override
     public String toString() {
-        return "SwimEvent{" + "seId=" + seId + ", seDate=" + seDate + ", seName=" + seName + '}';
+        return "Stævne ID: " + seId + ", Dato: " + seDate + ", Navn: " + seName;
     }
 
 }

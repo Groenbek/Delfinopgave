@@ -18,7 +18,6 @@ public class Member {
 
     public int getmId() {
         return mId;
-        //Hent mId fra DB evt?
     }
     public String getmName() {
         return mName;
@@ -38,7 +37,7 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Medlems ID: " + mId + "\tNavn: " + mName + "\talder: " + age+ " år" + "\tStatus: " + actOrPas + "\tKonkurerende: " + competitive + '}';
+        return "Medlems ID: " + mId + "\tNavn: " + mName + "\talder: " + age+ " år" + "\tStatus: " + actOrPas + "\tKonkurerende: " + competitive;
     }
 
 

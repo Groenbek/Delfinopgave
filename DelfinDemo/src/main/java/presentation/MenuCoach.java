@@ -21,7 +21,7 @@ public class MenuCoach implements Menu {
     public void startMenu() {
         int choice = 0;
         while (choice != 5) {
-            ui.println("---------------------- Delfin Klubben ----------------------");
+            ui.println("---------------------------- Delfin Klubben ----------------------------");
             ui.println("1) Vis holdliste");
             ui.println("2) Registrer træningsresultat");
             ui.println("3) Registrer konkurrenceresultat");
@@ -38,15 +38,15 @@ public class MenuCoach implements Menu {
                         break;
                     case 2:
                         coach.updateTrainingResult(ui);
-                        ui.println("Resultat registreret");
+                        ui.println("Resultat registreret.");
                         break;
                     case 3:
                         coach.updateEventResult(ui);
-                        ui.println("Resultat registreret");
+                        ui.println("Resultat registreret.");
                         break;
                     case 4:
                         coach.topFive(ui);
-                        ui.println("Medlem indastet i stævne");              
+                        ui.println("Medlem indastet i stævne.");              
                 }
 
             } catch (NumberFormatException e) {

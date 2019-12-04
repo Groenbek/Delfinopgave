@@ -18,7 +18,7 @@ public class MenuChairman implements Menu {
     public void startMenu() {
         int choice = 0;
         while (choice != 2) {
-            ui.println("---------------------- Delfin Klubben ----------------------");
+            ui.println("---------------------------- Delfin Klubben ----------------------------");
             ui.println("1) Registrer ny bruger");
             ui.println("2) Tilbage til hovedmenu");
             try {
