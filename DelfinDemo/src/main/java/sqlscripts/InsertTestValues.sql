@@ -99,12 +99,3 @@ VALUES (1, 6, 2, 0);
 INSERT INTO dolphinclub.memberstoevent
 VALUES (1, 7, 1, 1);
 
-
--- TODO --
--- væk Michael og Sebastian 
--- få sebastian bentley til at lave en readme
--- skriv det her script
--- design designclasse uml
--- saml dokument med modeller + indledning & beskrivelse
--- tests til vi brækker os
--- 
