@@ -9,6 +9,7 @@
 
 
 -- TODO --
+-- væk Michael og Sebastian 
 -- få sebastian bentley til at lave en readme
 -- skriv det her script
 -- design designclasse uml
