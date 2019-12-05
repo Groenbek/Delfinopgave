@@ -24,7 +24,7 @@ public class MemberTraining {
             if (dId < 1 || dId > 4) {
                 throw new IllegalArgumentException();
             }
-            String SQL = "SELECT * FROM memberstotraining WHERE d_id = ?";
+            String SQL = "SELECT * FROM dolphinclub.memberstotraining WHERE d_id = ?";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dId);
@@ -45,7 +45,7 @@ public class MemberTraining {
     //Insert parameter values into memberstotraining table in database
     public void insertMember(int tId, int mId, int dId, int tid) {
         try {
-            String SQL = "INSERT INTO memberstotraining (t_id, m_id, d_id, tid) VALUES (?, ?, ?, ?)";
+            String SQL = "INSERT INTO dolphinclub.memberstotraining (t_id, m_id, d_id, tid) VALUES (?, ?, ?, ?)";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, tId);
@@ -79,7 +79,7 @@ public class MemberTraining {
     //Update memberstotraining table in database, with values from parameters
     public void registerTrainingResult(int disciplin, int trainingdate, int tid, int mId) {
         try {
-            String SQL = "UPDATE memberstotraining SET trainingdate = ?, tid = ? WHERE m_id = ? AND d_id = ?;";
+            String SQL = "UPDATE dolphinclub.memberstotraining SET trainingdate = ?, tid = ? WHERE m_id = ? AND d_id = ?;";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, trainingdate);
