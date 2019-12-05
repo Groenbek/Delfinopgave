@@ -18,7 +18,7 @@ import model.SwimEvent;
 public class MembersToComp {
 
     //Is used in every method for connection to database
-    Connection con = null;
+    private Connection con = null;
 
     //Insert parameter values into memberstoevent table in database
     public void registerEventResult(int seId, int mId, int dId, int sePlacement) {

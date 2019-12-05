@@ -17,7 +17,7 @@ import model.Member;
 public class MemberMap {
 
     //Is used in every method for connection to database
-    Connection con = null;
+    private Connection con = null;
 
     //Building member objects from values in database and return an arraylist of those members objects
     public ArrayList<Member> getMembers() {

@@ -15,7 +15,7 @@ import model.Result;
 public class MemberTraining {
 
     //Is used in every method for connection to database
-    Connection con = null;
+    private Connection con = null;
 
     //Returns arraylist of result objects, with specific discipline ID as parameter
     public ArrayList<Result> getResults(int dId) {

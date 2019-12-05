@@ -4,8 +4,8 @@ package presentation;
 * @Authors: Michael Ibsen, Rasmus Grønbek, Sebastian Bentley, Sebastian Hansen
 */
 public class MainMenu implements Menu {
-    ConsoleUI ui = new ConsoleUI();
-    Menu activeMenu;
+    private ConsoleUI ui = new ConsoleUI();
+    private Menu activeMenu;
 
     public MainMenu() {
         startMenu();

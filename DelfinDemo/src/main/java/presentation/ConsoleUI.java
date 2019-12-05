@@ -7,7 +7,7 @@ import java.util.Scanner;
 */
 public class ConsoleUI {
 
-    Scanner input = new Scanner(System.in);
+    private Scanner input = new Scanner(System.in);
     
     //get and return input from user
     public String getInput() {

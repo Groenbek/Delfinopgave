@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class MemberToTeam {
 
     //Is used in every method for connection to database
-    Connection con = null;
+    private Connection con = null;
 
     //Insert parameter values into memberstoteam table in database
     public void insertMember(int mId, int tId, int mType, String hasPaid) {
