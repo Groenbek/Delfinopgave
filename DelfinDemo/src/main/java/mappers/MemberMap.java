@@ -24,7 +24,7 @@ public class MemberMap {
         ArrayList<Member> members = new ArrayList();
         try {
             con = DBConnector.getConnection();
-            String SQL = "SELECT * FROM members";
+            String SQL = "SELECT * FROM dolphinclub.members";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -47,7 +47,7 @@ public class MemberMap {
         ArrayList<Member> members = new ArrayList();
         try {
             con = DBConnector.getConnection();
-            String SQL = "SELECT distinct members.m_id, m_name, age, act_or_pas, competitive FROM members, memberstotraining "
+            String SQL = "SELECT distinct dolphinclub.members.m_id, m_name, age, act_or_pas, competitive FROM dolphinclub.members, dolphinclub.memberstotraining "
                     + "WHERE memberstotraining.m_id = members.m_id AND memberstotraining.t_id = ?;";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, teamID);
@@ -70,7 +70,7 @@ public class MemberMap {
     //Inserting member object into members table in database, with member object as parameter
     public void insertMember(Member member) {
         try {
-            String SQL = "INSERT INTO members (m_name, age, act_or_pas, competitive) VALUES (?, ?, ?, ?)";
+            String SQL = "INSERT INTO dolphinclub.members (m_name, age, act_or_pas, competitive) VALUES (?, ?, ?, ?)";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, member.getmName());
@@ -88,7 +88,7 @@ public class MemberMap {
         int returnId = 0;
         try {
             Connection con = DBConnector.getConnection();
-            String sql = "select max(m_id) from members";
+            String sql = "select max(m_id) from dolphinclub.members";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {

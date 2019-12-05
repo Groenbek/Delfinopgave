@@ -21,7 +21,7 @@ public class MemberToTeam {
     //Insert parameter values into memberstoteam table in database
     public void insertMember(int mId, int tId, int mType, String hasPaid) {
         try {
-            String SQL = "INSERT INTO memberstoteam (m_id, team_id, m_type, haspaid) VALUES (?, ?, ?, ?)";
+            String SQL = "INSERT INTO dolphinclub.memberstoteam (m_id, team_id, m_type, haspaid) VALUES (?, ?, ?, ?)";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, mId);
@@ -38,7 +38,7 @@ public class MemberToTeam {
     public HashMap<Integer, String> getRestance() {
         HashMap<Integer, String> hashmap = new HashMap<Integer, String>();
         try {
-            String SQL = "SELECT memberstoteam.m_id, haspaid, m_name FROM memberstoteam, members WHERE members.m_id = memberstoteam.m_id;";
+            String SQL = "SELECT dolphinclub.memberstoteam.m_id, haspaid, m_name FROM dolphinclub.memberstoteam, dolphinclub.members WHERE members.m_id = memberstoteam.m_id;";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
@@ -56,7 +56,7 @@ public class MemberToTeam {
     //Update value haspaid on specific member ID in memberstoteam table in database
     public void updateRestance(int mId, String hasPaid) {
         try {
-            String SQL = "UPDATE memberstoteam SET haspaid =? WHERE m_id = ?";
+            String SQL = "UPDATE dolphinclub.memberstoteam SET haspaid =? WHERE m_id = ?";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, hasPaid);

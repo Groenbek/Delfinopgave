@@ -23,7 +23,7 @@ public class MembersToComp {
     //Insert parameter values into memberstoevent table in database
     public void registerEventResult(int seId, int mId, int dId, int sePlacement) {
         try {
-            String SQL = "INSERT INTO memberstoevent (se_id, m_id, d_id, se_placement) VALUES (?, ?, ?, ?)";
+            String SQL = "INSERT INTO dolphinclub.memberstoevent (se_id, m_id, d_id, se_placement) VALUES (?, ?, ?, ?)";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, seId);
@@ -39,7 +39,7 @@ public class MembersToComp {
     //Update memberstoevent table in database, with values from parameters
     public void updateEventResult(int newResult, int mId, int disc) {
         try {
-            String SQL = "UPDATE memberstoevent SET se_placement =? WHERE m_id = ? AND d_id = ?";
+            String SQL = "UPDATE dolphinclub.memberstoevent SET se_placement =? WHERE m_id = ? AND d_id = ?";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, newResult);
@@ -54,7 +54,7 @@ public class MembersToComp {
     //Insert parameter values into swimevent table in database
     public void registerSwimEvent(String seDate, String seName) {
         try {
-            String SQL = "INSERT INTO swimevent (se_date, se_name) VALUES (?, ?) ";
+            String SQL = "INSERT INTO dolphinclub.swimevent (se_date, se_name) VALUES (?, ?) ";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, seDate);
@@ -69,7 +69,7 @@ public class MembersToComp {
     public ArrayList<SwimEvent> getSwimEvents() {
         ArrayList<SwimEvent> swimEvents = new ArrayList();
         try {
-            String SQL = "SELECT * FROM swimevent";
+            String SQL = "SELECT * FROM dolphinclub.swimevent";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
@@ -89,7 +89,7 @@ public class MembersToComp {
     //Insert parameter values into memberstoevent table in database
     public void registerSwimmerToSwimEvent(int seId, int mId, int dId, int sePlacement) {
         try {
-            String SQL = "INSERT INTO memberstoevent (se_id, m_id, d_id, se_placement) VALUES (?, ?, ?, ?) ";
+            String SQL = "INSERT INTO dolphinclub.memberstoevent (se_id, m_id, d_id, se_placement) VALUES (?, ?, ?, ?) ";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, seId);
@@ -106,7 +106,7 @@ public class MembersToComp {
     public ArrayList<CompScore> getAllMemberAndScores() {
         ArrayList<CompScore> leaderBoard = new ArrayList();
         try {
-            String SQL = "SELECT * FROM memberstoevent";
+            String SQL = "SELECT * FROM dolphinclub.memberstoevent";
             con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
