@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentation;
 
-/**
- *
- * @author bentley
- */
+/*
+* @Authors: Michael Ibsen, Rasmus Grønbek, Sebastian Bentley, Sebastian Hansen
+*/
+//Interface for menues
 public interface Menu {
     public void startMenu();
-    
 }

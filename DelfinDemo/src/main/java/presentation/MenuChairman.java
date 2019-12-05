@@ -1,9 +1,10 @@
 package presentation;
 
-
 import people.Chairman;
-import people.Member;
 
+/*
+* @Authors: Michael Ibsen, Rasmus Grønbek, Sebastian Bentley, Sebastian Hansen
+*/
 public class MenuChairman implements Menu {
 
     private ConsoleUI ui;
@@ -11,9 +12,10 @@ public class MenuChairman implements Menu {
 
     public MenuChairman(ConsoleUI ui) {
         this.ui = ui;
-        chairman  = new Chairman(ui);
+        chairman = new Chairman(ui);
     }
 
+    //Prompt user for menu options and act on correspondant options
     @Override
     public void startMenu() {
         int choice = 0;
@@ -33,12 +35,9 @@ public class MenuChairman implements Menu {
                         ui.println("Bruger oprettet.");
                         break;
                 }
-
             } catch (NumberFormatException e) {
                 ui.println("Vælg mellem menupunkt 1 - 2");
             }
         }
     }
-
-    
 }

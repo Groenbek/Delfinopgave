@@ -9,25 +9,24 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import people.Member;
+import model.Member;
 
+/*
+* @Authors: Michael Ibsen, Rasmus Grønbek, Sebastian Bentley, Sebastian Hansen
+*/
 public class MemberMap {
 
+    //Is used in every method for connection to database
     Connection con = null;
 
-    //Get ID from a database, way better than manual counter.
-    //PreparedStatement os = con.prepareStatement(SQL, Statement.RETURN_GENERATTED_KEYS);
-    //Return an ArrayList with all existing pizzas in database
+    //Building member objects from values in database and return an arraylist of those members objects
     public ArrayList<Member> getMembers() {
-
         ArrayList<Member> members = new ArrayList();
-
         try {
             con = DBConnector.getConnection();
             String SQL = "SELECT * FROM members";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 int mId = rs.getInt("m_id");
                 String name = rs.getString("m_name");
@@ -36,15 +35,14 @@ public class MemberMap {
                 String competitive = rs.getString("competitive");
                 Member member = new Member(mId, name, age, actOrPas, competitive);
                 members.add(member);
-
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(MemberMap.class.getName()).log(Level.SEVERE, null, ex);
         }
         return members;
     }
 
+    //Building member objects from values in two tables from database and return an arraylist.
     public ArrayList<Member> getMembersInTeam(int teamID) {
         ArrayList<Member> members = new ArrayList();
         try {
@@ -54,7 +52,6 @@ public class MemberMap {
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, teamID);
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 int mId = rs.getInt("m_id");
                 String name = rs.getString("m_name");
@@ -70,6 +67,7 @@ public class MemberMap {
         return members;
     }
 
+    //Inserting member object into members table in database, with member object as parameter
     public void insertMember(Member member) {
         try {
             String SQL = "INSERT INTO members (m_name, age, act_or_pas, competitive) VALUES (?, ?, ?, ?)";
@@ -84,15 +82,15 @@ public class MemberMap {
             Logger.getLogger(DBConnector.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public int getMemberId(){
+
+    //Return greatest value of member ID from members table in database
+    public int getMemberId() {
         int returnId = 0;
         try {
             Connection con = DBConnector.getConnection();
             String sql = "select max(m_id) from members";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
             if (rs.next()) {
                 returnId += rs.getInt(1);
             }
@@ -100,8 +98,5 @@ public class MemberMap {
             Logger.getLogger(MemberMap.class.getName()).log(Level.SEVERE, null, ex);
         }
         return returnId;
-        
     }
-    
-    
 }

@@ -1,13 +1,11 @@
 package presentation;
 
-import java.util.ArrayList;
-import mappers.MemberMap;
-import mappers.MemberTraining;
-import model.Result;
 import people.Coach;
-import people.Member;
 import presentation.ConsoleUI;
 
+/*
+* @Authors: Michael Ibsen, Rasmus Grønbek, Sebastian Bentley, Sebastian Hansen
+*/
 public class MenuCoach implements Menu {
 
     private ConsoleUI ui;
@@ -17,6 +15,7 @@ public class MenuCoach implements Menu {
         this.ui = ui;
     }
 
+    //Prompt user for menu options and act on correspondant options
     @Override
     public void startMenu() {
         int choice = 0;
@@ -46,13 +45,11 @@ public class MenuCoach implements Menu {
                         break;
                     case 4:
                         coach.topFive(ui);
-                        ui.println("Medlem indastet i stævne.");              
+                        ui.println("Medlem indastet i stævne.");
                 }
-
             } catch (NumberFormatException e) {
                 ui.println("Vælg mellem menupunkt 1 - 5");
             }
         }
     }
-
 }

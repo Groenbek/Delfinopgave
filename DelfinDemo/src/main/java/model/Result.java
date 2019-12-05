@@ -1,26 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-import static model.Discipline.*;
-
-/**
- *
- * @author Michael
- */
+/*
+* @Authors: Michael Ibsen, Rasmus Grønbek, Sebastian Bentley, Sebastian Hansen
+*/
 public class Result {
     private int id;
     private Discipline disc;
     private int time;
     
+    //Used in mappers.MemberTraining
     public Result(int id, Discipline disc, int tid) {
         this.id = id;
         this.disc = disc;
         this.time = tid;
     }
+    
+    //Used in toString to print time
     private String timeConverter() {
         String s = String.valueOf(time);
         if (s.length()==3) {
@@ -35,7 +30,6 @@ public class Result {
     public int getId() {
         return id;
     }
-
     
     public int getTime() {
         return time;

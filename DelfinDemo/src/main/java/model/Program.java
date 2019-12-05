@@ -1,13 +1,13 @@
 package model;
 
-import people.Chairman;
 import presentation.*;
 
+/*
+* @Authors: Michael Ibsen, Rasmus Grønbek, Sebastian Bentley, Sebastian Hansen
+*/
 public class Program {
 
-    ConsoleUI ui = new ConsoleUI();
-    Chairman ladyMcGee = new Chairman(ui);
-
+    //initialize program with MainMenu in main
     public static void startProgram() {
         new MainMenu();
     }

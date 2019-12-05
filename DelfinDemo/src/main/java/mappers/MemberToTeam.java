@@ -9,13 +9,16 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Discipline;
-import model.Result;
 
+/*
+* @Authors: Michael Ibsen, Rasmus Grønbek, Sebastian Bentley, Sebastian Hansen
+*/
 public class MemberToTeam {
 
+    //Is used in every method for connection to database
     Connection con = null;
 
+    //Insert parameter values into memberstoteam table in database
     public void insertMember(int mId, int tId, int mType, String hasPaid) {
         try {
             String SQL = "INSERT INTO memberstoteam (m_id, team_id, m_type, haspaid) VALUES (?, ?, ?, ?)";
@@ -31,6 +34,7 @@ public class MemberToTeam {
         }
     }
 
+    //Return hashmap with member ID as key and haspaid as value from memberstoteam table in database
     public HashMap<Integer, String> getRestance() {
         HashMap<Integer, String> hashmap = new HashMap<Integer, String>();
         try {
@@ -40,7 +44,7 @@ public class MemberToTeam {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("m_id");
-                String hasPaid = "\tNavn: " + rs.getString("m_name")+"\t\tStatus: "+rs.getString("haspaid");
+                String hasPaid = "\tNavn: " + rs.getString("m_name") + "\t\tStatus: " + rs.getString("haspaid");
                 hashmap.put(id, hasPaid);
             }
         } catch (SQLException ex) {
@@ -49,6 +53,7 @@ public class MemberToTeam {
         return hashmap;
     }
 
+    //Update value haspaid on specific member ID in memberstoteam table in database
     public void updateRestance(int mId, String hasPaid) {
         try {
             String SQL = "UPDATE memberstoteam SET haspaid =? WHERE m_id = ?";

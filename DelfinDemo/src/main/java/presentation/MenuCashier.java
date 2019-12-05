@@ -2,16 +2,20 @@ package presentation;
 
 import people.Cashier;
 
+/*
+* @Authors: Michael Ibsen, Rasmus Grønbek, Sebastian Bentley, Sebastian Hansen
+*/
 public class MenuCashier implements Menu {
-    
+
     private ConsoleUI ui;
     private Cashier cash;
-    
+
     public MenuCashier(ConsoleUI ui) {
         this.ui = ui;
         cash = new Cashier();
     }
 
+    //Prompt user for menu options and act on correspondant options
     @Override
     public void startMenu() {
         int choice = 0;
@@ -34,12 +38,9 @@ public class MenuCashier implements Menu {
                         ui.println("Restance opdateret");
                         break;
                 }
-
             } catch (NumberFormatException e) {
                 ui.println("Vælg mellem menupunkt 1 - 3");
             }
         }
     }
-    
-    
 }

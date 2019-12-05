@@ -86,5 +86,3 @@ primary key (team_id, m_id, m_type),
         foreign key (m_type)
         references pricelist(m_type)
 );
-
-

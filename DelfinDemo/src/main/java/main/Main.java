@@ -1,15 +1,14 @@
 package main;
 
-import mappers.MemberMap;
-import java.util.ArrayList;
-import people.Member;
 import model.Program;
-import presentation.MainMenu;
 
+/*
+* @Authors: Michael Ibsen, Rasmus Grønbek, Sebastian Bentley, Sebastian Hansen
+*/
 public class Main {
 
+    //start program
     public static void main(String[] args) {
         Program.startProgram();
     }
-
 }

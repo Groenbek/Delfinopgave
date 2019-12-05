@@ -1,23 +1,26 @@
 package people;
 
+import model.Member;
 import mappers.MemberMap;
 import mappers.MemberToTeam;
 import mappers.MemberTraining;
 import presentation.ConsoleUI;
-import presentation.ConsoleUI;
 
+/*
+* @Authors: Michael Ibsen, Rasmus Grønbek, Sebastian Bentley, Sebastian Hansen
+*/
 public class Chairman {
 
     private MemberMap memberMap = new MemberMap();
     private MemberToTeam memberToTeam = new MemberToTeam();
     private MemberTraining memberTrain = new MemberTraining();
-
     private ConsoleUI ui;
 
     public Chairman(ConsoleUI ui) {
         this.ui = ui;
     }
 
+    //Prompt user for values, creates and returns Member object
     private Member createMember() {
         ui.println("Tast navn: ");
         String name = ui.getInput();
@@ -36,6 +39,7 @@ public class Chairman {
         return member;
     }
 
+    //Insert member values into correct database tables using mappers
     public void insertMemberAllTables() {
         Member member = createMember();
         memberMap.insertMember(member);
@@ -51,6 +55,7 @@ public class Chairman {
         }
     }
 
+    //Calculate team ID from member age
     private int calculateTeamID(Member member) {
         if (member.getAge() < 18) {
             return 1;
@@ -58,6 +63,7 @@ public class Chairman {
         return 2;
     }
 
+    //Calculate price from member ActOrPas and age value
     private int calculatePriceID(Member member) {
         if (member.getActOrPas().equals("passiv")) {
             return 1;
@@ -68,5 +74,4 @@ public class Chairman {
         }
         return 4;
     }
-
 }

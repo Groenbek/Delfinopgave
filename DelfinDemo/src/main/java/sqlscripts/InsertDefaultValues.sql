@@ -25,4 +25,3 @@ INSERT INTO dolphinclub.discipline
 VALUES (d_id, 'BREASTSTROKE');
 INSERT INTO dolphinclub.discipline
 VALUES (d_id, 'BUTTERFLY');
-
